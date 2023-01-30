@@ -42,12 +42,13 @@ class ProfileHeaderView: UIView {
         return text1
     }
    
-    private var text2: UITextView {
-        let text2 = UITextView()
+    private var text2: UITextField {
+        let text2 = UITextField()
         
         
         text2.frame = CGRect(x: text1.frame.origin.x, y: buttonShowStatus.frame.origin.y - 64, width: 300, height: 30)
-        text2.text = "Waiting for something..."
+        text2.placeholder = "Waiting for something..."
+        text2.isUserInteractionEnabled = true
         text2.backgroundColor = UIColor.lightGray
         text2.textColor = UIColor.black
         text2.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -67,20 +68,13 @@ class ProfileHeaderView: UIView {
         buttonShowStatus.layer.shadowRadius = CGFloat(4)
         buttonShowStatus.layer.shadowColor = UIColor.black.cgColor
         buttonShowStatus.layer.shadowOpacity = 0.7
-        buttonShowStatus.addTarget(ProfileHeaderView.self, action: #selector(buttonAction3), for: .touchUpInside)
+        buttonShowStatus.addTarget(self, action: #selector(buttonAction3), for: .touchUpInside)
         return buttonShowStatus
     }()
-
-//    private func setupButton() {
-//        addSubview(self.buttonShowStatus)
-//        buttonShowStatus.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -200).isActive = true
-//        buttonShowStatus.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-//        buttonShowStatus.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-//        buttonShowStatus.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
     
-    @objc private func buttonAction3() {
-       
+    @objc func buttonAction3() {
+        let text = text2.text ?? "no text"
+        print(text)
         }
     
     private func setupLayout() {
