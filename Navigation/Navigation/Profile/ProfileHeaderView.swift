@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         let text2 = UITextField()
         
         
-        text2.frame = CGRect(x: text1.frame.origin.x, y: buttonShowStatus.frame.origin.y - 64, width: 300, height: 30)
+        text2.frame = CGRect(x: text1.frame.origin.x, y: buttonShowStatus.frame.origin.y - 15 - 34, width: 300, height: 15)
         text2.placeholder = "Waiting for something..."
         text2.isUserInteractionEnabled = true
         text2.backgroundColor = UIColor.lightGray
