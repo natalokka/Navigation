@@ -8,6 +8,8 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +28,7 @@ class InfoViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    
+
     private func setupButton() {
         self.view.addSubview(self.button)
         self.button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -200).isActive = true
