@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		481BB285299654D700941FEE /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481BB284299654D700941FEE /* LogInViewController.swift */; };
 		4823915D295F31C300E27635 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4823915C295F31C300E27635 /* AppDelegate.swift */; };
 		4823915F295F31C300E27635 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4823915E295F31C300E27635 /* SceneDelegate.swift */; };
 		48239166295F31C500E27635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48239165295F31C500E27635 /* Assets.xcassets */; };
@@ -17,14 +18,10 @@
 		489D447A2987EA0B00A058FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D44792987EA0B00A058FD /* ProfileViewController.swift */; };
 		48B4017D2976CB18009A4639 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4017C2976CB18009A4639 /* Post.swift */; };
 		48B4017F2976D664009A4639 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4017E2976D664009A4639 /* InfoViewController.swift */; };
-		48EA15FB29941784006B7649 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FA29941784006B7649 /* AvatarImageView.swift */; };
-		48EA15FD29941881006B7649 /* FullNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FC29941881006B7649 /* FullNameLabel.swift */; };
-		48EA15FF2994188B006B7649 /* StatusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FE2994188B006B7649 /* StatusTextField.swift */; };
-		48EA160129941899006B7649 /* SetStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA160029941899006B7649 /* SetStatusButton.swift */; };
-		48EA1605299418B3006B7649 /* ShowMemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA1604299418B3006B7649 /* ShowMemeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		481BB284299654D700941FEE /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		48239159295F31C300E27635 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4823915C295F31C300E27635 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4823915E295F31C300E27635 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,11 +34,6 @@
 		489D44792987EA0B00A058FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		48B4017C2976CB18009A4639 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		48B4017E2976D664009A4639 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
-		48EA15FA29941784006B7649 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
-		48EA15FC29941881006B7649 /* FullNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullNameLabel.swift; sourceTree = "<group>"; };
-		48EA15FE2994188B006B7649 /* StatusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTextField.swift; sourceTree = "<group>"; };
-		48EA160029941899006B7649 /* SetStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStatusButton.swift; sourceTree = "<group>"; };
-		48EA1604299418B3006B7649 /* ShowMemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,13 +83,9 @@
 		489D44722987E21A00A058FD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				489D44732987E23D00A058FD /* ProfileHeaderView.swift */,
-				48EA1604299418B3006B7649 /* ShowMemeButton.swift */,
-				48EA160029941899006B7649 /* SetStatusButton.swift */,
-				48EA15FE2994188B006B7649 /* StatusTextField.swift */,
-				48EA15FC29941881006B7649 /* FullNameLabel.swift */,
 				489D44792987EA0B00A058FD /* ProfileViewController.swift */,
-				48EA15FA29941784006B7649 /* AvatarImageView.swift */,
+				489D44732987E23D00A058FD /* ProfileHeaderView.swift */,
+				481BB284299654D700941FEE /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -172,19 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48EA15FB29941784006B7649 /* AvatarImageView.swift in Sources */,
 				4823915D295F31C300E27635 /* AppDelegate.swift in Sources */,
 				48239171295F824B00E27635 /* FeedViewController.swift in Sources */,
 				48B4017F2976D664009A4639 /* InfoViewController.swift in Sources */,
-				48EA160129941899006B7649 /* SetStatusButton.swift in Sources */,
-				48EA15FD29941881006B7649 /* FullNameLabel.swift in Sources */,
 				48B4017D2976CB18009A4639 /* Post.swift in Sources */,
 				4823915F295F31C300E27635 /* SceneDelegate.swift in Sources */,
 				489D447A2987EA0B00A058FD /* ProfileViewController.swift in Sources */,
-				48EA15FF2994188B006B7649 /* StatusTextField.swift in Sources */,
+				481BB285299654D700941FEE /* LogInViewController.swift in Sources */,
 				4823917B295F98C000E27635 /* PostViewController.swift in Sources */,
 				489D44742987E23D00A058FD /* ProfileHeaderView.swift in Sources */,
-				48EA1605299418B3006B7649 /* ShowMemeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

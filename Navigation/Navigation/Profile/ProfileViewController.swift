@@ -13,8 +13,17 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view = profileHeaderView
+        view.backgroundColor = UIColor.orange
+        view.addSubview(profileHeaderView)
+        
+        NSLayoutConstraint.activate([
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: profileHeaderView.trailingAnchor, constant: 0),
+            view.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: profileHeaderView.leadingAnchor, constant: 0),
+            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 0),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileHeaderView.bottomAnchor, constant: 0)
+        ])
+    
+        
 
     }
     
