@@ -9,81 +9,78 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    private var didSetupConstraints = false
+    
+    private var avatarImageView = AvatarImageView()
+    
+    private var fullNameLabel = FullNameLabel()
+    
+    private var statusTextField = StatusTextField()
+        
+    private var setStatusButton = SetStatusButton()
+        
+    private var showMemeButton = ShowMemeButton()
+        
     init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        setupLayout()
-        setupViews()
+        super.init(frame: .zero)
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        backgroundColor = UIColor.orange
+        clipsToBounds = true
+        
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusTextField)
+        addSubview(setStatusButton)
+        setStatusButton.addTarget(self, action: #selector(onPressSetStatusButton), for: .touchUpInside)
+        addSubview(showMemeButton)
+        setNeedsUpdateConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    private var photo: UIImageView {
-        let photo = UIImageView()
-        photo.image = UIImage(named: "capy")
-        photo.frame = CGRect(x: 16, y: 16, width: 100, height: 100)
-        photo.layer.cornerRadius = 50
-        photo.layer.masksToBounds = true
-        photo.layer.borderColor = UIColor.black.cgColor
-        photo.layer.borderWidth = 3
-        return photo
+    @objc func onPressSetStatusButton() {
+        print(statusTextField.text)
     }
     
-    private var text1: UITextView {
-        let text1 = UITextView()
-    
-        text1.frame = CGRect(x: 125, y: 27, width: 200, height: 30)
-        text1.text = "Hipster Capybara"
-        text1.backgroundColor = UIColor.lightGray
-        text1.textColor = UIColor.black
-        text1.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        return text1
-    }
-   
-    private var text2: UITextField {
-        let text2 = UITextField()
-        
-        
-        text2.frame = CGRect(x: text1.frame.origin.x, y: buttonShowStatus.frame.origin.y - 15 - 34, width: 300, height: 15)
-        text2.placeholder = "Waiting for something..."
-        text2.isUserInteractionEnabled = true
-        text2.backgroundColor = UIColor.lightGray
-        text2.textColor = UIColor.black
-        text2.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        return text2
-    }
-   
-    private var buttonShowStatus: UIButton = {
-        let buttonShowStatus = UIButton()
-        buttonShowStatus.frame = CGRect(x: 16, y: 132, width: 359, height: 50)
-        buttonShowStatus.backgroundColor = .blue
-        buttonShowStatus.layer.cornerRadius = 4
-        buttonShowStatus.setTitle("Show status", for: .normal)
-        buttonShowStatus.setTitleColor(.white, for: .normal)
-        buttonShowStatus.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        buttonShowStatus.titleLabel?.textColor = .white
-        buttonShowStatus.layer.shadowOffset = CGSize(width: 4, height: 4)
-        buttonShowStatus.layer.shadowRadius = CGFloat(4)
-        buttonShowStatus.layer.shadowColor = UIColor.black.cgColor
-        buttonShowStatus.layer.shadowOpacity = 0.7
-        buttonShowStatus.addTarget(self, action: #selector(buttonAction3), for: .touchUpInside)
-        return buttonShowStatus
-    }()
-    
-    @objc func buttonAction3() {
-        let text = text2.text ?? "no text"
-        print(text)
+    override func updateConstraints() {
+        if didSetupConstraints == false {
+            addConstraintsForMyLabel()
         }
-    
-    private func setupLayout() {
-        addSubview(self.photo)
-        addSubview(self.text1)
-        addSubview(self.text2)
-        addSubview(self.buttonShowStatus)
+        super.updateConstraints()
     }
     
-    private func setupViews(){
-        text2.center = text1.center    }
+    private func addConstraintsForMyLabel() {
+        let mySuperview = self.superview
+        if (mySuperview != nil) {
+            NSLayoutConstraint.activate([
+                mySuperview!.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+                mySuperview!.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+                mySuperview!.safeAreaLayoutGuide.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+                mySuperview!.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+                self.heightAnchor.constraint(equalToConstant: 220),
+                avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                avatarImageView.heightAnchor.constraint(equalToConstant: 110),
+                avatarImageView.widthAnchor.constraint(equalToConstant: 110),
+                setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+                setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+                setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+                statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
+                statusTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20),
+                fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+                fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20),
+                showMemeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+                showMemeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+                showMemeButton.heightAnchor.constraint(equalToConstant: 50),
+                showMemeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
+            ])
+        }
+    }
+    
 }

@@ -17,6 +17,11 @@
 		489D447A2987EA0B00A058FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D44792987EA0B00A058FD /* ProfileViewController.swift */; };
 		48B4017D2976CB18009A4639 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4017C2976CB18009A4639 /* Post.swift */; };
 		48B4017F2976D664009A4639 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B4017E2976D664009A4639 /* InfoViewController.swift */; };
+		48EA15FB29941784006B7649 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FA29941784006B7649 /* AvatarImageView.swift */; };
+		48EA15FD29941881006B7649 /* FullNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FC29941881006B7649 /* FullNameLabel.swift */; };
+		48EA15FF2994188B006B7649 /* StatusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA15FE2994188B006B7649 /* StatusTextField.swift */; };
+		48EA160129941899006B7649 /* SetStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA160029941899006B7649 /* SetStatusButton.swift */; };
+		48EA1605299418B3006B7649 /* ShowMemeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EA1604299418B3006B7649 /* ShowMemeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		489D44792987EA0B00A058FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		48B4017C2976CB18009A4639 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		48B4017E2976D664009A4639 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
+		48EA15FA29941784006B7649 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		48EA15FC29941881006B7649 /* FullNameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullNameLabel.swift; sourceTree = "<group>"; };
+		48EA15FE2994188B006B7649 /* StatusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTextField.swift; sourceTree = "<group>"; };
+		48EA160029941899006B7649 /* SetStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetStatusButton.swift; sourceTree = "<group>"; };
+		48EA1604299418B3006B7649 /* ShowMemeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +92,12 @@
 			isa = PBXGroup;
 			children = (
 				489D44732987E23D00A058FD /* ProfileHeaderView.swift */,
+				48EA1604299418B3006B7649 /* ShowMemeButton.swift */,
+				48EA160029941899006B7649 /* SetStatusButton.swift */,
+				48EA15FE2994188B006B7649 /* StatusTextField.swift */,
+				48EA15FC29941881006B7649 /* FullNameLabel.swift */,
 				489D44792987EA0B00A058FD /* ProfileViewController.swift */,
+				48EA15FA29941784006B7649 /* AvatarImageView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -157,14 +172,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48EA15FB29941784006B7649 /* AvatarImageView.swift in Sources */,
 				4823915D295F31C300E27635 /* AppDelegate.swift in Sources */,
 				48239171295F824B00E27635 /* FeedViewController.swift in Sources */,
 				48B4017F2976D664009A4639 /* InfoViewController.swift in Sources */,
+				48EA160129941899006B7649 /* SetStatusButton.swift in Sources */,
+				48EA15FD29941881006B7649 /* FullNameLabel.swift in Sources */,
 				48B4017D2976CB18009A4639 /* Post.swift in Sources */,
 				4823915F295F31C300E27635 /* SceneDelegate.swift in Sources */,
 				489D447A2987EA0B00A058FD /* ProfileViewController.swift in Sources */,
+				48EA15FF2994188B006B7649 /* StatusTextField.swift in Sources */,
 				4823917B295F98C000E27635 /* PostViewController.swift in Sources */,
 				489D44742987E23D00A058FD /* ProfileHeaderView.swift in Sources */,
+				48EA1605299418B3006B7649 /* ShowMemeButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
