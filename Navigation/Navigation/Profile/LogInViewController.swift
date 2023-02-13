@@ -10,30 +10,21 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let scrollView = UIScrollView(frame: .zero)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    let scrollView = {
+        var scrollView = UIScrollView(frame: .zero)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(scrollView)
-        //        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 2000)
-        
-        
-        view.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.isHidden = true
-        
         scrollView.keyboardDismissMode = .interactive
-        
+        return scrollView
+    }()
+    
+    let logoVK = {
         let logoVK = UIImageView(frame: .zero)
         logoVK.image = UIImage(named: "logo")
         logoVK.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(logoVK)
-        
-        
-        
-        let safeLayout = self.view.safeAreaLayoutGuide
-        
+        return logoVK
+    }()
+    
+    let loginTextField = {
         let loginTextField = UITextField(frame: .zero)
         loginTextField.backgroundColor = .systemGray6
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -48,8 +39,10 @@ class LogInViewController: UIViewController {
         loginTextField.layer.cornerRadius = 10
         loginTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(loginTextField)
-        
+        return loginTextField
+    }()
+    
+    let passwordTextField = {
         let passwordTextField = UITextField(frame: .zero)
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
@@ -65,9 +58,9 @@ class LogInViewController: UIViewController {
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(passwordTextField)
-        
-        
+        return passwordTextField
+    }()
+    let logInButton = {
         let logInButton = UIButton(frame: .zero)
         logInButton.backgroundColor = UIColor(named: "My CS")
         logInButton.layer.cornerRadius = 10
@@ -77,17 +70,30 @@ class LogInViewController: UIViewController {
         logInButton.titleLabel?.textColor = .white
         logInButton.addTarget(self, action: #selector(moveToProfile), for: .touchUpInside)
         logInButton.translatesAutoresizingMaskIntoConstraints = false
+        return logInButton
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.white
+        self.navigationController?.navigationBar.isHidden = true
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(logoVK)
+        
+        let safeLayout = self.view.safeAreaLayoutGuide
+    
+        scrollView.addSubview(loginTextField)
+        scrollView.addSubview(passwordTextField)
         scrollView.addSubview(logInButton)
         
         
         NSLayoutConstraint.activate([
-            //            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor),
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            //            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            //            scrollView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             logoVK.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoVK.heightAnchor.constraint(equalToConstant: 100),
             logoVK.widthAnchor.constraint(equalToConstant: 100),
