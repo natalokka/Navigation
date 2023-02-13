@@ -55,17 +55,17 @@ class ProfileHeaderView: UIView {
         return setStatusButton
     }()
         
-    private var showMemeButton = {
-        let showMemeButton = UIButton()
-        showMemeButton.backgroundColor = .white
-        showMemeButton.layer.cornerRadius = 4
-        showMemeButton.setTitle("Show meme", for: .normal)
-        showMemeButton.setTitleColor(.black, for: .normal)
-        showMemeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        showMemeButton.titleLabel?.textColor = .white
-        showMemeButton.translatesAutoresizingMaskIntoConstraints = false
-        return showMemeButton
-    }()
+//    private var showMemeButton = {
+//        let showMemeButton = UIButton()
+//        showMemeButton.backgroundColor = .white
+//        showMemeButton.layer.cornerRadius = 4
+//        showMemeButton.setTitle("Show meme", for: .normal)
+//        showMemeButton.setTitleColor(.black, for: .normal)
+//        showMemeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+//        showMemeButton.titleLabel?.textColor = .white
+//        showMemeButton.translatesAutoresizingMaskIntoConstraints = false
+//        return showMemeButton
+//    }()
         
     init() {
         super.init(frame: .zero)
@@ -80,7 +80,7 @@ class ProfileHeaderView: UIView {
         addSubview(statusTextField)
         addSubview(setStatusButton)
         setStatusButton.addTarget(self, action: #selector(onPressSetStatusButton), for: .touchUpInside)
-        addSubview(showMemeButton)
+//        addSubview(showMemeButton)
         setNeedsUpdateConstraints()
         
     }
@@ -102,7 +102,8 @@ class ProfileHeaderView: UIView {
     
     private func addConstraintsForMyLabel() {
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 220),
+            self.heightAnchor.constraint(equalToConstant: 210),
+            self.widthAnchor.constraint(equalToConstant: 395),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: 110),
@@ -115,10 +116,10 @@ class ProfileHeaderView: UIView {
             statusTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20),
             fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
             fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 20),
-            showMemeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-            showMemeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            showMemeButton.heightAnchor.constraint(equalToConstant: 50),
-            showMemeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
+//            showMemeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+//            showMemeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+//            showMemeButton.heightAnchor.constraint(equalToConstant: 50),
+//            showMemeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
         ])
     }
     

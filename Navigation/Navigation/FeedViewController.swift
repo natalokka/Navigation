@@ -9,7 +9,6 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    var post = Post(title: "Мой пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,7 @@ class FeedViewController: UIViewController {
     @objc private func buttonAction() {
             let postViewController = PostViewController()
             self.navigationController?.pushViewController(postViewController, animated: true)
-            postViewController.titlePost = post.title
+            postViewController.titlePost = "Post"
         }
 }
 
