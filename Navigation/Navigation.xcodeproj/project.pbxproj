@@ -14,6 +14,7 @@
 		48239169295F31C500E27635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48239167295F31C500E27635 /* LaunchScreen.storyboard */; };
 		48239171295F824B00E27635 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48239170295F824B00E27635 /* FeedViewController.swift */; };
 		4823917B295F98C000E27635 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4823917A295F98C000E27635 /* PostViewController.swift */; };
+		483BAAB1299ABC4C00B72407 /* UITextFieldWithIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483BAAB0299ABC4C00B72407 /* UITextFieldWithIntents.swift */; };
 		486722482997CB220040AE31 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486722472997CB220040AE31 /* ProfileTableHeaderView.swift */; };
 		489D44742987E23D00A058FD /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D44732987E23D00A058FD /* ProfileHeaderView.swift */; };
 		489D447A2987EA0B00A058FD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D44792987EA0B00A058FD /* ProfileViewController.swift */; };
@@ -31,6 +32,7 @@
 		4823916A295F31C500E27635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48239170295F824B00E27635 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		4823917A295F98C000E27635 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		483BAAB0299ABC4C00B72407 /* UITextFieldWithIntents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldWithIntents.swift; sourceTree = "<group>"; };
 		486722472997CB220040AE31 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		489D44732987E23D00A058FD /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		489D44792987EA0B00A058FD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		489D44722987E21A00A058FD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				483BAAB0299ABC4C00B72407 /* UITextFieldWithIntents.swift */,
 				489D44792987EA0B00A058FD /* ProfileViewController.swift */,
 				489D44732987E23D00A058FD /* ProfileHeaderView.swift */,
 				486722472997CB220040AE31 /* ProfileTableHeaderView.swift */,
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4823915D295F31C300E27635 /* AppDelegate.swift in Sources */,
+				483BAAB1299ABC4C00B72407 /* UITextFieldWithIntents.swift in Sources */,
 				48239171295F824B00E27635 /* FeedViewController.swift in Sources */,
 				48B4017F2976D664009A4639 /* InfoViewController.swift in Sources */,
 				48B4017D2976CB18009A4639 /* PostView.swift in Sources */,
