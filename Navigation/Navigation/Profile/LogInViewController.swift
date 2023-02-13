@@ -25,7 +25,7 @@ class LogInViewController: UIViewController {
     }()
     
     let loginTextField = {
-        let loginTextField = UITextField(frame: .zero)
+        let loginTextField = UITextFieldWithIntents(frame: .zero)
         loginTextField.backgroundColor = .systemGray6
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.placeholder = "  Email or phone"
@@ -43,7 +43,7 @@ class LogInViewController: UIViewController {
     }()
     
     let passwordTextField = {
-        let passwordTextField = UITextField(frame: .zero)
+        let passwordTextField = UITextFieldWithIntents(frame: .zero)
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
         passwordTextField.placeholder = "  Password"
@@ -57,6 +57,7 @@ class LogInViewController: UIViewController {
         passwordTextField.clipsToBounds = true
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextField
     }()
