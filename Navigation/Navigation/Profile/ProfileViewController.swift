@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
     
     var profileHeaderView = {
         var profileHeaderView = ProfileHeaderView()
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         return profileHeaderView
     }()
        
@@ -32,20 +33,20 @@ class ProfileViewController: UIViewController {
         
     ]
    
-    var profileTableHeaderView: ProfileTableHeaderView = ProfileTableHeaderView()
+    var profileTableHeaderView = {
+        var profileTableHeaderView = ProfileTableHeaderView()
+        profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        return profileTableHeaderView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.orange
-        
-        profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(profileTableHeaderView)
         
-        self.profileTableHeaderView.table.dataSource = self
-        self.profileTableHeaderView.table.delegate = self
-        
-        self.profileTableHeaderView.table.register(PostView.self , forCellReuseIdentifier: cellID)
+        profileTableHeaderView.table.dataSource = self
+        profileTableHeaderView.table.delegate = self
+        profileTableHeaderView.table.register(PostView.self , forCellReuseIdentifier: cellID)
         
         NSLayoutConstraint.activate([
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: profileTableHeaderView.trailingAnchor, constant: 0),
@@ -53,11 +54,6 @@ class ProfileViewController: UIViewController {
             view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: profileTableHeaderView.topAnchor, constant: 0),
             view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileTableHeaderView.bottomAnchor, constant: 0),
         ])
-    
-        profileTableHeaderView.table.rowHeight = UITableView.automaticDimension
-        profileTableHeaderView.table.estimatedRowHeight = 700
-        
-
     }
     
     override func viewWillLayoutSubviews() {
@@ -83,18 +79,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//                    NSLayoutConstraint.activate([
-//                        profileHeaderView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor, constant: 0),
-//                        profileHeaderView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor, constant: 0),
-//                        profileHeaderView.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0),
-//                        profileHeaderView.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 0)
-//                    ])
-        return profileHeaderView
+            return profileHeaderView
         
-            }
-
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 
-//    }
-    
+        }
 }

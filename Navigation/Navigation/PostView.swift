@@ -72,7 +72,6 @@ class PostView: UITableViewCell {
     
     func constraintsForPost() {
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 530),
             authorNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             authorNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             authorNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
