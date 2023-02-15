@@ -5,7 +5,6 @@
 //  Created by Наталия Куракова on 10.02.2023.
 //
 
-import Foundation
 import UIKit
 
 class LogInViewController: UIViewController {
@@ -25,7 +24,7 @@ class LogInViewController: UIViewController {
     }()
     
     let loginTextField = {
-        let loginTextField = UITextFieldWithIntents(frame: .zero)
+        let loginTextField = UITextField(frame: .zero)
         loginTextField.backgroundColor = .systemGray6
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.placeholder = "  Email or phone"
@@ -43,7 +42,7 @@ class LogInViewController: UIViewController {
     }()
     
     let passwordTextField = {
-        let passwordTextField = UITextFieldWithIntents(frame: .zero)
+        let passwordTextField = UITextField(frame: .zero)
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
         passwordTextField.placeholder = "  Password"

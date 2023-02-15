@@ -16,6 +16,8 @@ class ProfileTableHeaderView: UIView {
         return table
     }()
     
+
+    
     init() {
         super.init(frame: .zero)
         table.sectionHeaderTopPadding = 0
