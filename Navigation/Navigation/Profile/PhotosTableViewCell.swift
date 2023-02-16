@@ -68,6 +68,8 @@ class PhotosTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        buttonForTableCell.addTarget(self, action: #selector(moveToGallery), for: .touchUpInside)
+        buttonForTableCell.setImage(UIImage(systemName: "arrow.forward"), for: .normal)
         contentView.isUserInteractionEnabled = true
         addSubviewsForPhotosTableViewCell()
     }
