@@ -8,22 +8,23 @@
 import UIKit
 
 private var cellID = "PostView"
+private var photosCellID = "PhotosTableViewCell"
 
 class ProfileViewController: UIViewController {
-    
-    struct Post {
-        let author: String
-        let description: String
-        let image: String
-        let likes: Int
-        let views: Int
-    }
     
     var profileHeaderView = {
         var profileHeaderView = ProfileHeaderView()
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         return profileHeaderView
     }()
+    
+    var photosTableViewCell = {
+        var photosTableViewCell = PhotosTableViewCell()
+        photosTableViewCell.translatesAutoresizingMaskIntoConstraints = false
+        return photosTableViewCell
+    }()
+
+    
        
     var dataSource: [Post] = [
         Post(author: "Tom Black", description: "First time in NY!", image: "cat in NY", likes: 123, views: 456),
@@ -33,31 +34,46 @@ class ProfileViewController: UIViewController {
         
     ]
    
-    var profileTableHeaderView = {
-        var profileTableHeaderView = ProfileTableHeaderView()
-        profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+    var profileTableHeaderView: ProfileTableHeaderView! = {
+        let profileTableHeaderView = ProfileTableHeaderView()
         return profileTableHeaderView
+        
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.orange
+        
+        profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(profileTableHeaderView)
         
-        profileTableHeaderView.table.dataSource = self
-        profileTableHeaderView.table.delegate = self
-        profileTableHeaderView.table.register(PostView.self , forCellReuseIdentifier: cellID)
+        self.profileTableHeaderView.table.dataSource = self
+        self.profileTableHeaderView.table.delegate = self
+        
+        self.profileTableHeaderView.table.register(PostView.self , forCellReuseIdentifier: cellID)
+        self.profileTableHeaderView.table.register(PhotosTableViewCell.self , forCellReuseIdentifier: photosCellID)
+        
+
         
         NSLayoutConstraint.activate([
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: profileTableHeaderView.trailingAnchor, constant: 0),
             view.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: profileTableHeaderView.leadingAnchor, constant: 0),
             view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: profileTableHeaderView.topAnchor, constant: 0),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileTableHeaderView.bottomAnchor, constant: 0),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileTableHeaderView.bottomAnchor, constant: 0)
         ])
+    
+        
+
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+    }
+    
+    @objc func onTapArrowContact() {
+        let photosViewController = PhotosViewController()
+        self.navigationController?.pushViewController(photosViewController, animated: true)
     }
    
 }
@@ -65,21 +81,26 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.count
+        dataSource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = profileTableHeaderView.table.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostView
-        cell.authorNameLabel.text = dataSource[indexPath.item].author
-        cell.descriptionLabel.text = dataSource[indexPath.item].description
-        cell.postImageView.image = UIImage(named: dataSource[indexPath.item].image)
-        cell.likesLabel.text = "Likes: \(dataSource[indexPath.item].likes)"
-        cell.viewsLabel.text = "Views: \(dataSource[indexPath.item].views)"
+        if (indexPath.row != 0) {
+            let cell = profileTableHeaderView.table.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! PostView
+            cell.authorNameLabel.text = dataSource[indexPath.row - 1].author
+            cell.descriptionLabel.text = dataSource[indexPath.row - 1].description
+            cell.postImageView.image = UIImage(named: dataSource[indexPath.row - 1].image)
+            cell.likesLabel.text = "Likes: \(dataSource[indexPath.row - 1].likes)"
+            cell.viewsLabel.text = "Views: \(dataSource[indexPath.row - 1].views)"
+            return cell
+        }
+        let cell = profileTableHeaderView.table.dequeueReusableCell(withIdentifier: photosCellID, for: indexPath) as! PhotosTableViewCell
+        cell.onTapArrowContact = self.onTapArrowContact
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            return profileHeaderView
-        
-        }
+        return profileHeaderView
+    }
 }
+
