@@ -26,6 +26,7 @@
 		48B9B7C6299D407600C9D191 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B7C5299D407600C9D191 /* PhotosCollectionViewCell.swift */; };
 		48B9B7C8299D449A00C9D191 /* PhotosCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B7C7299D449A00C9D191 /* PhotosCollectionHeaderView.swift */; };
 		48B9B7CA299D61C800C9D191 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B9B7C9299D61C800C9D191 /* Post.swift */; };
+		48D50227299FB09100C260B7 /* OpenedAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D50226299FB09100C260B7 /* OpenedAvatarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		48B9B7C5299D407600C9D191 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		48B9B7C7299D449A00C9D191 /* PhotosCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionHeaderView.swift; sourceTree = "<group>"; };
 		48B9B7C9299D61C800C9D191 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		48D50226299FB09100C260B7 /* OpenedAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedAvatarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				483BAAB2299CCE1C00B72407 /* PhotosTableViewCell.swift */,
 				486722472997CB220040AE31 /* ProfileTableHeaderView.swift */,
 				481BB284299654D700941FEE /* LogInViewController.swift */,
+				48D50226299FB09100C260B7 /* OpenedAvatarView.swift */,
 				48B9B7C1299D34FF00C9D191 /* PhotosViewController.swift */,
 				48B9B7C3299D3BB100C9D191 /* PhotosCollectionView.swift */,
 				48B9B7C5299D407600C9D191 /* PhotosCollectionViewCell.swift */,
@@ -200,6 +203,7 @@
 				48B9B7C6299D407600C9D191 /* PhotosCollectionViewCell.swift in Sources */,
 				481BB285299654D700941FEE /* LogInViewController.swift in Sources */,
 				4823917B295F98C000E27635 /* PostViewController.swift in Sources */,
+				48D50227299FB09100C260B7 /* OpenedAvatarView.swift in Sources */,
 				489D44742987E23D00A058FD /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

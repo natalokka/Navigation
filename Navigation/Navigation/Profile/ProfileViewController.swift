@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController {
         return profileHeaderView
     }()
     
+    
+    
     var photosTableViewCell = {
         var photosTableViewCell = PhotosTableViewCell()
         photosTableViewCell.translatesAutoresizingMaskIntoConstraints = false
@@ -34,35 +36,74 @@ class ProfileViewController: UIViewController {
         
     ]
    
-    var profileTableHeaderView: ProfileTableHeaderView! = {
+    var profileTableHeaderView: ProfileTableHeaderView = {
         let profileTableHeaderView = ProfileTableHeaderView()
         return profileTableHeaderView
-        
     }()
+    
+    var openedAvatarView: OpenedAvatarView = {
+        let openedAvatarView = OpenedAvatarView()
+        return openedAvatarView
+    }()
+    
+    var tapGestureRecogniser = UITapGestureRecognizer()
+    var widthConstraint: NSLayoutConstraint!
+    var heightConstraint: NSLayoutConstraint!
+    var isBig = false
+    
+    
+    @objc func handleTap(sender: UITapGestureRecognizer){
+        openedAvatarView.isHidden = false
+    
+//        for i in openedAvatarView.avatarImageView.constraints {
+//            i.isActive = false
+//        }
+//        
+//        NSLayoutConstraint.activate([
+//            openedAvatarView.avatarImageView.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
+//            openedAvatarView.avatarImageView.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
+//            openedAvatarView.avatarImageView.centerYAnchor.constraint(equalTo: openedAvatarView.centerYAnchor, constant: 0),
+//        ])
+//        
+//        UIView.animate(withDuration: 2, delay: 0, animations: self.view.layoutIfNeeded)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.orange
-        
+        view.backgroundColor = UIColor.blue
         profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(profileTableHeaderView)
+        
+        view.addSubview(openedAvatarView)
+        profileTableHeaderView.addSubview(profileHeaderView)
+        
         
         self.profileTableHeaderView.table.dataSource = self
         self.profileTableHeaderView.table.delegate = self
         
         self.profileTableHeaderView.table.register(PostView.self , forCellReuseIdentifier: cellID)
         self.profileTableHeaderView.table.register(PhotosTableViewCell.self , forCellReuseIdentifier: photosCellID)
-        
 
         
         NSLayoutConstraint.activate([
+            
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: profileTableHeaderView.trailingAnchor, constant: 0),
             view.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: profileTableHeaderView.leadingAnchor, constant: 0),
             view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: profileTableHeaderView.topAnchor, constant: 0),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileTableHeaderView.bottomAnchor, constant: 0)
-        ])
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: profileTableHeaderView.bottomAnchor, constant: 0),
+            
+            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: openedAvatarView.topAnchor, constant: 0),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: openedAvatarView.bottomAnchor, constant: 0),
+            view.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
+            
+            profileHeaderView.widthAnchor.constraint(equalTo: profileTableHeaderView.widthAnchor)        ])
     
+        tapGestureRecogniser.addTarget(self, action: #selector(handleTap))
+        profileHeaderView.avatarImageView.addGestureRecognizer(tapGestureRecogniser)
         
 
     }

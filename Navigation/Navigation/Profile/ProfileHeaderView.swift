@@ -11,14 +11,16 @@ class ProfileHeaderView: UIView {
     
     private var didSetupConstraints = false
     
-    private var avatarImageView = {
+     var avatarImageView = {
         let avatarImageView =  UIImageView()
         avatarImageView.image = UIImage(named: "capy")
         avatarImageView.layer.cornerRadius = 55
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.borderColor = UIColor.black.cgColor
         avatarImageView.layer.borderWidth = 3
+        avatarImageView.isUserInteractionEnabled = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+    
         return avatarImageView
     }()
     
@@ -43,7 +45,7 @@ class ProfileHeaderView: UIView {
         return statusTextField
     }()
         
-    private var setStatusButton = {
+    var setStatusButton = {
         let setStatusButton = UIButton()
         setStatusButton.backgroundColor = .blue
         setStatusButton.layer.cornerRadius = 4
@@ -89,7 +91,7 @@ class ProfileHeaderView: UIView {
     
     private func addConstraintsForMyLabel() {
         NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: 395),
+//            self.widthAnchor.constraint(equalToConstant: 395),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             avatarImageView.heightAnchor.constraint(equalToConstant: 110),

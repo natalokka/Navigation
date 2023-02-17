@@ -79,26 +79,26 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     func addSubviewsForPhotosTableViewCell() {
-        addSubview(labelForTableCell)
-        addSubview(image1ForTableCell)
-        addSubview(image2ForTableCell)
-        addSubview(image3ForTableCell)
-        addSubview(image4ForTableCell)
-        addSubview(buttonForTableCell)
+        contentView.addSubview(labelForTableCell)
+        contentView.addSubview(image1ForTableCell)
+        contentView.addSubview(image2ForTableCell)
+        contentView.addSubview(image3ForTableCell)
+        contentView.addSubview(image4ForTableCell)
+        contentView.addSubview(buttonForTableCell)
         constraintsForPhotosTableViewCell()
     }
     
     func constraintsForPhotosTableViewCell(){
         NSLayoutConstraint.activate([
-            labelForTableCell.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-            labelForTableCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            labelForTableCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            labelForTableCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             buttonForTableCell.centerYAnchor.constraint(equalTo: labelForTableCell.centerYAnchor),
-            buttonForTableCell.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            buttonForTableCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             image1ForTableCell.topAnchor.constraint(equalTo: labelForTableCell.bottomAnchor, constant: 12),
-            image1ForTableCell.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25, constant: -12),
+            image1ForTableCell.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25, constant: -12),
             image1ForTableCell.heightAnchor.constraint(equalTo: image1ForTableCell.widthAnchor),
-            image1ForTableCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            image1ForTableCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+            image1ForTableCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            image1ForTableCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             image2ForTableCell.centerYAnchor.constraint(equalTo: image1ForTableCell.centerYAnchor),
             image2ForTableCell.leadingAnchor.constraint(equalTo: image1ForTableCell.trailingAnchor, constant: 8),
             image2ForTableCell.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25, constant: -12),
