@@ -55,17 +55,17 @@ class ProfileViewController: UIViewController {
     @objc func handleTap(sender: UITapGestureRecognizer){
         openedAvatarView.isHidden = false
     
-//        for i in openedAvatarView.avatarImageView.constraints {
-//            i.isActive = false
-//        }
-//        
-//        NSLayoutConstraint.activate([
-//            openedAvatarView.avatarImageView.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
-//            openedAvatarView.avatarImageView.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
-//            openedAvatarView.avatarImageView.centerYAnchor.constraint(equalTo: openedAvatarView.centerYAnchor, constant: 0),
-//        ])
-//        
-//        UIView.animate(withDuration: 2, delay: 0, animations: self.view.layoutIfNeeded)
+        for i in openedAvatarView.avatarImageView.constraints {
+            i.isActive = false
+        }
+        
+        NSLayoutConstraint.activate([
+            openedAvatarView.avatarImageView.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
+            openedAvatarView.avatarImageView.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
+            openedAvatarView.avatarImageView.centerYAnchor.constraint(equalTo: openedAvatarView.centerYAnchor, constant: 0),
+        ])
+        
+        UIView.animate(withDuration: 2, delay: 0, animations: self.view.layoutIfNeeded)
     }
     
     
@@ -131,7 +131,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.authorNameLabel.text = dataSource[indexPath.row - 1].author
             cell.descriptionLabel.text = dataSource[indexPath.row - 1].description
             cell.postImageView.image = UIImage(named: dataSource[indexPath.row - 1].image)
-            cell.likesLabel.text = "Likes: \(dataSource[indexPath.row - 1].likes)"
+            cell.likes = dataSource[indexPath.row - 1].likes
+            cell.transitionToDescription = { desctiprion in
+                let postDescriptioViewController = PostDescriptioViewController()
+                postDescriptioViewController.postDescriptionLabel.text = desctiprion
+                self.present(postDescriptioViewController, animated: true)
+                
+            }
+            cell.updateLikes()
             cell.viewsLabel.text = "Views: \(dataSource[indexPath.row - 1].views)"
             return cell
         }

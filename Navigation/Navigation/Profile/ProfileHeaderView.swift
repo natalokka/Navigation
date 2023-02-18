@@ -44,6 +44,13 @@ class ProfileHeaderView: UIView {
         statusTextField.translatesAutoresizingMaskIntoConstraints = false
         return statusTextField
     }()
+    
+    private var statusLabel = {
+        let statusLabel = UILabel()
+        statusLabel.textAlignment = .left
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        return statusLabel
+    }()
         
     var setStatusButton = {
         let setStatusButton = UIButton()
@@ -69,6 +76,7 @@ class ProfileHeaderView: UIView {
         addSubview(fullNameLabel)
         addSubview(statusTextField)
         addSubview(setStatusButton)
+        addSubview(statusLabel)
         setStatusButton.addTarget(self, action: #selector(onPressSetStatusButton), for: .touchUpInside)
         setNeedsUpdateConstraints()
         
@@ -79,7 +87,8 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func onPressSetStatusButton() {
-        print(statusTextField.text)
+        statusLabel.textAlignment = .left
+        statusLabel.text = statusTextField.text
     }
     
     override func updateConstraints() {
@@ -100,6 +109,8 @@ class ProfileHeaderView: UIView {
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: 0),
+            statusLabel.trailingAnchor.constraint(equalTo: statusTextField.trailingAnchor, constant: 0),
             statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -34),
             setStatusButton.bottomAnchor.constraint(equalTo:
                 self.bottomAnchor, constant: -16),
