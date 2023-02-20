@@ -187,15 +187,15 @@ class LogInViewController: UIViewController {
         if password.isEmpty {
             passwordTextField.layer.borderColor = UIColor.red.cgColor
         }
-//        if login.isEmpty || password.isEmpty {
-//            return
-//        }
-//        if (login != defaultLogin || password != defaultPassword) {
-//            var alertController = UIAlertController(title: nil, message: "Invalid login or password", preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            present(alertController, animated: true)
-//            return
-//        }
+        if login.isEmpty || password.isEmpty {
+            return
+        }
+        if (login != defaultLogin || password != defaultPassword) {
+            var alertController = UIAlertController(title: nil, message: "Invalid login or password", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true)
+            return
+        }
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
