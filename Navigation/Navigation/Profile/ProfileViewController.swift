@@ -132,6 +132,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.descriptionLabel.text = dataSource[indexPath.row - 1].description
             cell.postImageView.image = UIImage(named: dataSource[indexPath.row - 1].image)
             cell.likes = dataSource[indexPath.row - 1].likes
+            cell.views = dataSource[indexPath.row - 1].views
             cell.transitionToDescription = { desctiprion in
                 let postDescriptioViewController = PostDescriptioViewController()
                 postDescriptioViewController.postDescriptionLabel.text = desctiprion
@@ -139,7 +140,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 
             }
             cell.updateLikes()
-            cell.viewsLabel.text = "Views: \(dataSource[indexPath.row - 1].views)"
+            cell.updateViews()
             return cell
         }
         let cell = profileTableHeaderView.table.dequeueReusableCell(withIdentifier: photosCellID, for: indexPath) as! PhotosTableViewCell

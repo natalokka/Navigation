@@ -15,6 +15,7 @@ class PostView: UITableViewCell {
     var transitionToDescription: (String) -> () = {_ in }
     
     var likes = 0
+    var views = 0
     
     var authorNameLabel: UILabel! = {
         let authorNameLabel = UILabel(frame: .zero)
@@ -62,6 +63,10 @@ class PostView: UITableViewCell {
         likesButton.setTitle("Likes: \(likes)", for: .normal)
     }
     
+    func updateViews() {
+        viewsLabel.text = "Views: \(views)"
+    }
+    
     @objc func onLikeTouch(){
         likes += 1
     }
@@ -88,6 +93,8 @@ class PostView: UITableViewCell {
     
     @objc func tapForDescription() {
         transitionToDescription(descriptionLabel.text ?? "")
+        views += 1
+        updateViews()
     }
     
     
