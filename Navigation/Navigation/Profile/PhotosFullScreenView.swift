@@ -15,7 +15,6 @@ class PhotosFullScreenView: UIView {
     
     var placeForPhoto = {
         var placeForPhoto = UIView(frame: .zero)
-        placeForPhoto.translatesAutoresizingMaskIntoConstraints = false
         return placeForPhoto
     }()
     
@@ -39,22 +38,9 @@ class PhotosFullScreenView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         isHidden = true
         
-//        backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.1)
-        
         addSubview(placeForPhoto)
         addSubview(photo)
         addSubview(buttonToExit)
-        
-        NSLayoutConstraint.activate([
-            buttonToExit.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            buttonToExit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            buttonToExit.widthAnchor.constraint(equalToConstant: 30),
-            buttonToExit.heightAnchor.constraint(equalToConstant: 30),
-            placeForPhoto.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            placeForPhoto.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            placeForPhoto.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            placeForPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
-        ])
     }
     
     required init?(coder: NSCoder) {
