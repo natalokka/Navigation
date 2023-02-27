@@ -23,7 +23,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         
         super.init(frame: frame)
         
-        backgroundColor = UIColor.brown
+        backgroundColor = UIColor.white.withAlphaComponent(0.5)
         
         addSubview(photo)
         

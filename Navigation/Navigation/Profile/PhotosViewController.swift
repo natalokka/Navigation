@@ -117,10 +117,18 @@ extension PhotosViewController: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath)
         currentSelectedCell = cell
         currentCellPreviousFrame = cell?.frame
+        
+        let window = UIApplication.shared.keyWindow
+        let topPadding = window!.safeAreaInsets.top
+        let bottomPadding = window!.safeAreaInsets.bottom
+        
+        let myFrame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: UIScreen.main.bounds.height - topPadding - bottomPadding))
+        let photoFrame = CGRect(origin: CGPoint(x: 0, y: (myFrame.height - self.view.frame.width) / 2), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
+        
         UIView.animate(withDuration: 0.25, delay: 0, animations: {
             if cell != nil {
-                cell!.frame = self.view.frame
-                (cell as! PhotosCollectionViewCell).photo.frame = self.view.frame
+                cell!.frame = myFrame
+                (cell as! PhotosCollectionViewCell).photo.frame = photoFrame
                 self.photosCollectionView.bringSubviewToFront(cell!)
                 self.selected = true
             }

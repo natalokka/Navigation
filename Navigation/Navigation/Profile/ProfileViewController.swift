@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
+        view.backgroundColor = UIColor.systemGray6
         profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(profileTableHeaderView)
@@ -80,6 +80,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(openedAvatarView)
         profileTableHeaderView.addSubview(profileHeaderView)
         
+        self.title = "Profile"
+        self.navigationController?.navigationBar.isHidden = false
         
         self.profileTableHeaderView.table.dataSource = self
         self.profileTableHeaderView.table.delegate = self
@@ -104,7 +106,6 @@ class ProfileViewController: UIViewController {
     
         tapGestureRecogniser.addTarget(self, action: #selector(handleTap))
         profileHeaderView.avatarImageView.addGestureRecognizer(tapGestureRecogniser)
-        
 
     }
     
@@ -136,6 +137,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.transitionToDescription = { desctiprion in
                 let postDescriptioViewController = PostDescriptioViewController()
                 postDescriptioViewController.postDescriptionLabel.text = desctiprion
+                postDescriptioViewController.photo.image = cell.postImageView.image
                 self.present(postDescriptioViewController, animated: true)
                 
             }
