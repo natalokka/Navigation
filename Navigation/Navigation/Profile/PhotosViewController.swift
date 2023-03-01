@@ -12,6 +12,29 @@ class PhotosViewController: UIViewController {
     
     static let reusableID = "collectionCell"
     
+    var currentSelectedCell: UICollectionViewCell?
+    var currentCellPreviousFrame: CGRect?
+    var selected = false
+    
+    var fullScreen: PhotosFullScreenView = {
+        var fullScreen = PhotosFullScreenView(frame: .zero)
+        return fullScreen
+    }()
+    
+    var button: UIButton = UIButton()
+    
+    @objc func buttonTapped() {
+        guard let currentCellPreviousFrame else { return }
+        UIView.animate(withDuration: 0.25, delay: 0, animations: {
+            if self.currentSelectedCell != nil {
+                (self.currentSelectedCell as! PhotosCollectionViewCell).frame = currentCellPreviousFrame
+                (self.currentSelectedCell as! PhotosCollectionViewCell).photo.frame = CGRect(origin: .zero, size: currentCellPreviousFrame.size)
+            }
+            self.view.layoutSubviews()
+        })
+        self.selected = false
+    }
+    
     var photos: [UIImage] = [
         UIImage(named: "photo 1")!,
         UIImage(named: "photo 2")!,
@@ -45,31 +68,32 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemPink
         
-        photosCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.title = "Photo Gallery"
         self.navigationController?.navigationBar.isHidden = false
         
         view.addSubview(photosCollectionView)
+        view.addSubview(button)
         
         self.photosCollectionView.dataSource = self
         self.photosCollectionView.delegate = self
-        
-        self.photosCollectionView.register(PhotosCollectionViewCell.self , forCellWithReuseIdentifier: PhotosViewController.reusableID)
-        
-
-        
-        NSLayoutConstraint.activate([
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: photosCollectionView.trailingAnchor, constant: 0),
-            view.safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: photosCollectionView.leadingAnchor, constant: 0),
-            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: photosCollectionView.topAnchor, constant: 0),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: photosCollectionView.bottomAnchor, constant: 0)
-        ])
     
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.photosCollectionView.register(PhotosCollectionViewCell.self , forCellWithReuseIdentifier: PhotosViewController.reusableID)
+        self.photosCollectionView.frame = view.frame
+        self.photosCollectionView.reloadData()
+        button.frame = CGRect(origin: CGPoint(x: 320, y: 100), size: CGSize(width: 50, height: 50))
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        let systemImage = UIImage(systemName: "arrow.backward") ;
+        button.setImage(systemImage, for: .normal)
+        view.bringSubviewToFront(button)
     }
     
 }
 
-extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
@@ -78,10 +102,42 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosViewController.reusableID, for: indexPath) as! PhotosCollectionViewCell
+        
         cell.photo.image = photos[indexPath.item]
         return cell
     }
+}
     
+extension PhotosViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selected {
+            return
+        }
+        let cell = collectionView.cellForItem(at: indexPath)
+        currentSelectedCell = cell
+        currentCellPreviousFrame = cell?.frame
+        
+        let window = UIApplication.shared.keyWindow
+        let topPadding = window!.safeAreaInsets.top
+        let bottomPadding = window!.safeAreaInsets.bottom
+        
+        let myFrame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: UIScreen.main.bounds.height - topPadding - bottomPadding))
+        let photoFrame = CGRect(origin: CGPoint(x: 0, y: (myFrame.height - self.view.frame.width) / 2), size: CGSize(width: self.view.frame.width, height: self.view.frame.width))
+        
+        UIView.animate(withDuration: 0.25, delay: 0, animations: {
+            if cell != nil {
+                cell!.frame = myFrame
+                (cell as! PhotosCollectionViewCell).photo.frame = photoFrame
+                self.photosCollectionView.bringSubviewToFront(cell!)
+                self.selected = true
+            }
+            self.view.layoutSubviews()
+        })
+    }
+}
+    
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: (UIScreen.main.bounds.width - 48)/3, height: 100)
     }

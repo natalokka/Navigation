@@ -9,16 +9,28 @@ import Foundation
 import UIKit
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    var photo: UIImageView!
+    var photo: UIImageView = {
+        var photo = UIImageView(frame: .zero)
+        return photo
+    }()
+
+    
+    private func updatePhotoFrame() {
+        photo.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+    }
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        backgroundColor = UIColor.brown
-        photo = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        
+        backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        
         addSubview(photo)
+        
+        updatePhotoFrame()
     }
     
+   
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
