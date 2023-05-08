@@ -55,24 +55,24 @@ class ProfileViewController: UIViewController {
     @objc func handleTap(sender: UITapGestureRecognizer){
         openedAvatarView.isHidden = false
     
-//        for i in openedAvatarView.avatarImageView.constraints {
-//            i.isActive = false
-//        }
-//        
-//        NSLayoutConstraint.activate([
-//            openedAvatarView.avatarImageView.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
-//            openedAvatarView.avatarImageView.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
-//            openedAvatarView.avatarImageView.centerYAnchor.constraint(equalTo: openedAvatarView.centerYAnchor, constant: 0),
-//        ])
-//        
-//        UIView.animate(withDuration: 2, delay: 0, animations: self.view.layoutIfNeeded)
+        for i in openedAvatarView.avatarImageView.constraints {
+            i.isActive = false
+        }
+        
+        NSLayoutConstraint.activate([
+            openedAvatarView.avatarImageView.leadingAnchor.constraint(equalTo: openedAvatarView.leadingAnchor, constant: 0),
+            openedAvatarView.avatarImageView.trailingAnchor.constraint(equalTo: openedAvatarView.trailingAnchor, constant: 0),
+            openedAvatarView.avatarImageView.centerYAnchor.constraint(equalTo: openedAvatarView.centerYAnchor, constant: 0),
+        ])
+        
+        UIView.animate(withDuration: 2, delay: 0, animations: self.view.layoutIfNeeded)
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
+        view.backgroundColor = UIColor.systemGray6
         profileTableHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(profileTableHeaderView)
@@ -80,6 +80,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(openedAvatarView)
         profileTableHeaderView.addSubview(profileHeaderView)
         
+        self.title = "Profile"
+        self.navigationController?.navigationBar.isHidden = false
         
         self.profileTableHeaderView.table.dataSource = self
         self.profileTableHeaderView.table.delegate = self
@@ -104,7 +106,6 @@ class ProfileViewController: UIViewController {
     
         tapGestureRecogniser.addTarget(self, action: #selector(handleTap))
         profileHeaderView.avatarImageView.addGestureRecognizer(tapGestureRecogniser)
-        
 
     }
     
@@ -131,8 +132,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.authorNameLabel.text = dataSource[indexPath.row - 1].author
             cell.descriptionLabel.text = dataSource[indexPath.row - 1].description
             cell.postImageView.image = UIImage(named: dataSource[indexPath.row - 1].image)
-            cell.likesLabel.text = "Likes: \(dataSource[indexPath.row - 1].likes)"
-            cell.viewsLabel.text = "Views: \(dataSource[indexPath.row - 1].views)"
+            cell.likes = dataSource[indexPath.row - 1].likes
+            cell.views = dataSource[indexPath.row - 1].views
+            cell.transitionToDescription = { desctiprion in
+                let postDescriptioViewController = PostDescriptioViewController()
+                postDescriptioViewController.postDescriptionLabel.text = desctiprion
+                postDescriptioViewController.photo.image = cell.postImageView.image
+                self.present(postDescriptioViewController, animated: true)
+                
+            }
+            cell.updateLikes()
+            cell.updateViews()
             return cell
         }
         let cell = profileTableHeaderView.table.dequeueReusableCell(withIdentifier: photosCellID, for: indexPath) as! PhotosTableViewCell
