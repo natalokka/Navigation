@@ -5,10 +5,12 @@
 //  Created by Наталия Куракова on 10.02.2023.
 //
 
-import Foundation
 import UIKit
 
 class LogInViewController: UIViewController {
+    
+    let defaultLogin = "capy"
+    let defaultPassword = "qwertyui"
     
     let scrollView = {
         var scrollView = UIScrollView(frame: .zero)
@@ -25,7 +27,8 @@ class LogInViewController: UIViewController {
     }()
     
     let loginTextField = {
-        let loginTextField = UITextFieldWithIntents(frame: .zero)
+        let loginTextField = UITextField(frame: .zero)
+        loginTextField.tag = 1
         loginTextField.backgroundColor = .systemGray6
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.placeholder = "  Email or phone"
@@ -38,12 +41,40 @@ class LogInViewController: UIViewController {
         loginTextField.clipsToBounds = true
         loginTextField.layer.cornerRadius = 10
         loginTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        loginTextField.addTarget(self, action: #selector(resetLoginValidation), for: .editingChanged)
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         return loginTextField
     }()
     
+    let warningLabel = {
+        let warningLabel = UILabel(frame: .zero)
+        warningLabel.text = "Password length less than 8"
+        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+        warningLabel.textColor = .red
+        warningLabel.isHidden = true
+        return warningLabel
+    }()
+    
+    @objc func tapLogin(){
+        if (passwordTextField.text?.count ?? 8 < 8) {
+            warningLabel.isHidden = false
+        } else {
+            warningLabel.isHidden = true
+        }
+        
+    }
+    
+    @objc func resetLoginValidation(){
+        loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    @objc func resetPasswordValidation(){
+        passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
     let passwordTextField = {
-        let passwordTextField = UITextFieldWithIntents(frame: .zero)
+        let passwordTextField = UITextField(frame: .zero)
+        passwordTextField.tag = 2
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
         passwordTextField.placeholder = "  Password"
@@ -57,10 +88,12 @@ class LogInViewController: UIViewController {
         passwordTextField.clipsToBounds = true
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        
+        passwordTextField.addTarget(self, action: #selector(tapLogin), for: .editingDidEnd)
+        passwordTextField.addTarget(self, action: #selector(resetPasswordValidation), for: .editingChanged)
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         return passwordTextField
     }()
+    
     let logInButton = {
         let logInButton = UIButton(frame: .zero)
         logInButton.backgroundColor = UIColor(named: "My CS")
@@ -88,6 +121,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(loginTextField)
         scrollView.addSubview(passwordTextField)
         scrollView.addSubview(logInButton)
+        scrollView.addSubview(warningLabel)
         
         
         NSLayoutConstraint.activate([
@@ -107,8 +141,10 @@ class LogInViewController: UIViewController {
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passwordTextField.bottomAnchor.constraint(equalTo: warningLabel.topAnchor, constant: 0),
+            passwordTextField.leadingAnchor.constraint(equalTo: warningLabel.leadingAnchor, constant: 0),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            logInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             logInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
@@ -141,8 +177,25 @@ class LogInViewController: UIViewController {
         self.scrollView.contentInset = .zero
     }
     
-    @objc private func moveToProfile(){
+    @objc private func moveToProfile() {
         let profileViewController = ProfileViewController()
+        var login = loginTextField.text ?? ""
+        var password = passwordTextField.text ?? ""
+        if login.isEmpty {
+            loginTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        if password.isEmpty {
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+        }
+        if login.isEmpty || password.isEmpty {
+            return
+        }
+        if (login != defaultLogin || password != defaultPassword) {
+            var alertController = UIAlertController(title: nil, message: "Invalid login or password", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true)
+            return
+        }
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
